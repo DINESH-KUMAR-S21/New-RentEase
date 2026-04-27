@@ -226,7 +226,7 @@ export const getUsersList = handleAsyncError(async (req, res, next) => {
 
 //Admin getting single user
 export const getSingleUser = handleAsyncError(async (req, res, next) => {
-     const user = await User.findById(req.user.id)
+    const user = await User.findById(req.params.id);  // ✅ was req.user.id
 
      if(!user){
         return next (new HandleError(`User dosen't exist ${req.params.id}`, 404));   

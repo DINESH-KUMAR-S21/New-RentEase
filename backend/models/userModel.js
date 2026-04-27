@@ -45,10 +45,11 @@ const userSchema = new mongoose.Schema({
     },
 
 
-     role:{
-            type: String,
-            default: "user"
-        },
+       role: {
+        type: String,
+        enum: ["user", "vendor", "admin"],  // ✅ added vendor role
+        default: "user"
+    },
         resetPasswordToken: String,
         resetPasswordExpire: Date
 
