@@ -58,9 +58,14 @@ const productSchema = new mongoose.Schema({
     ],
 
     category: {
-        type: String,
-        required: [true, 'Please enter product category']
-    },
+    type: String,
+    required: [true, 'Please enter product category'],
+    enum: [
+        "Bed", "Sofa", "Table", "Chair", "Wardrobe", "Bookshelf",
+        "Refrigerator", "Washing Machine", "TV", "Air Conditioner",
+        "Microwave", "Water Purifier", "Other"
+    ]
+},
 
     stock:{
         type: Number,
@@ -116,4 +121,4 @@ const productSchema = new mongoose.Schema({
     
 })
 
-export default mongoose.model('product', productSchema);
+export default mongoose.model('Product', productSchema);
