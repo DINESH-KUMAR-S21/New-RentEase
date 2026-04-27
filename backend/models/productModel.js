@@ -23,6 +23,27 @@ const productSchema = new mongoose.Schema({
         default: 0
     },
 
+        // ✅ Availability status
+    availability: {
+        type: String,
+        enum: ["Available", "Rented", "Under Maintenance", "Unavailable"],
+        default: "Available"
+    },
+     // ✅ Security deposit amount
+    securityDeposit: {
+        type: Number,
+        required: [true, 'Please enter security deposit amount'],
+        default: 0
+    },
+
+    // ✅ Available rental tenures in months e.g. [3, 6, 12]
+    rentalTenure: {
+        type: [Number],
+        required: [true, 'Please enter available rental tenure options'],
+        default: [3, 6, 12]
+    },
+
+
     images:[
         {
             public_id: {
@@ -74,6 +95,12 @@ const productSchema = new mongoose.Schema({
             }
         }
     ],
+      // ✅ Vendor who owns this product
+    vendor: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true
+    },
 
         user:{
             type: mongoose.Schema.ObjectId,
