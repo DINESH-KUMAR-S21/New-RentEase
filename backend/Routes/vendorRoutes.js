@@ -14,6 +14,7 @@ import {
     vendorUpdateMaintenanceRequest,
     getVendorDashboard
 } from '../controller/vendorController.js';
+import { validateProduct } from '../middleware/validate.js';
 
 const router = express.Router();
 
@@ -25,7 +26,7 @@ router.route("/vendor/dashboard").get(...vendorAuth, getVendorDashboard);
 
 // Product management
 router.route("/vendor/products").get(...vendorAuth, vendorGetProducts);
-router.route("/vendor/product/create").post(...vendorAuth, vendorCreateProduct);
+router.route("/vendor/product/create").post(...vendorAuth, validateProduct, vendorCreateProduct);
 router.route("/vendor/product/:id")
     .get(...vendorAuth, vendorGetSingleProduct)
     .put(...vendorAuth, vendorUpdateProduct)

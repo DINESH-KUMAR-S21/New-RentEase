@@ -10,11 +10,12 @@ import {
     adminDeleteMaintenanceRequest,
     adminGetMaintenanceByVendor
 } from '../controller/maintenanceController.js';
+import { validateMaintenanceRequest } from '../middleware/validate.js';
 
 const router = express.Router();
 
 // User routes
-router.route("/maintenance/new").post(verifyUserAuth, createMaintenanceRequest);
+router.route("/maintenance/new").post(verifyUserAuth, validateMaintenanceRequest, createMaintenanceRequest);
 router.route("/maintenance/me").get(verifyUserAuth, getMyMaintenanceRequests);
 router.route("/maintenance/:id")
     .get(verifyUserAuth, getSingleMaintenanceRequest)

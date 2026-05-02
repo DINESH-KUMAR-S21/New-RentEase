@@ -3,11 +3,12 @@ import {registerUser , loginUser, logout, requestPasswordReset, resetPassword, u
 import { getUserDetails } from '../controller/userController.js';
 import { createReviewForProduct } from '../controller/ProductController.js';
 import { roleBasedAccess, verifyUserAuth } from '../middleware/userAuth.js';
+import { validateRegister, validateLogin } from '../middleware/validate.js';
 
 const router = express.Router();
 
-router.route("/register").post(registerUser);
-router.route("/login").post(loginUser);
+router.route("/register").post(validateRegister,registerUser);
+router.route("/login").post(validateLogin,loginUser);
 router.route("/logout").post(logout);
 router.route("/password/forgot").post(requestPasswordReset);
 router.route("/reset/:token").post(resetPassword);

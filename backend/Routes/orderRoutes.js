@@ -9,11 +9,12 @@ import {
     updateRentalStatus,
     deleteOrder
 } from '../controller/orderController.js';
+import { validateOrder } from '../middleware/validate.js';
 
 const router = express.Router();
 
 // User routes
-router.route("/new/order").post(verifyUserAuth, createOrder);
+router.route("/new/order").post(verifyUserAuth, validateOrder, createOrder);
 router.route("/order/:id").get(verifyUserAuth, getSingleOrder);
 router.route("/orders/me").get(verifyUserAuth, getMyOrders);
 
